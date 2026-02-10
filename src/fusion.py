@@ -1,10 +1,11 @@
-# src/fusion.py
+# src/fusion.py (sửa lại phần import và function)
+
 """
 Module fusion: Kết hợp artifact/reality/stress scores thành final probability
 """
 
 import numpy as np
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 import logging
 
 from .utils import load_config, clip_value
