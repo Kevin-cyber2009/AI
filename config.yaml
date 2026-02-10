@@ -1,0 +1,141 @@
+# config.yaml
+# Cấu hình mặc định cho Hybrid++ Reality Stress Detector
+
+# === PREPROCESSING ===
+preprocessing:
+  fps: 6  # Sampling frame rate
+  resize_width: 512
+  resize_height: 288
+  max_frames: 100  # Giới hạn số frames xử lý
+  color_space: 'RGB'  # RGB hoặc GRAY
+
+# === FORENSIC ANALYSIS ===
+forensic:
+  # FFT/DCT
+  fft_components: 10  # Số thành phần FFT lấy
+  dct_components: 10
+  spectrum_bins: 8    # Bins cho histogram
+  
+  # PRNU Residual
+  prnu_denoise_kernel: 5  # Kernel size cho denoising
+  prnu_method: 'bilateral'  # bilateral hoặc gaussian
+  
+  # Optical Flow
+  optical_flow_quality: 0.01
+  optical_flow_min_distance: 10
+  optical_flow_block_size: 7
+
+# === REALITY ENGINE ===
+reality_engine:
+  # Multi-scale Entropy
+  entropy_scales: 4  # Số mức pyramid
+  entropy_window_size: 16
+  
+  # Fractal Dimension
+  fractal_box_sizes: [2, 4, 8, 16, 32]
+  fractal_edge_threshold_low: 50
+  fractal_edge_threshold_high: 150
+  
+  # Causal Motion Predictor
+  causal_delay_embedding: 3  # Số delay steps
+  causal_prediction_horizon: 1
+  causal_model_type: 'linear'  # linear hoặc tcn
+  
+  # Information Conservation
+  compression_codec: 'libx264'
+  compression_preset: 'medium'
+  compression_chunk_seconds: 1.0
+
+# === STRESS LAB ===
+stress_lab:
+  # Physics Perturbations
+  light_jitter_strength: 0.1
+  blur_kernel_range: [3, 7]
+  affine_rotation_range: [-5, 5]  # degrees
+  affine_scale_range: [0.95, 1.05]
+  
+  # Compression Cascade
+  compression_levels: [23, 28, 35]  # CRF values
+  
+  # Temporal Shuffle
+  shuffle_window_size: 10
+  
+  # Noise Injection
+  noise_std: 0.02
+  
+  # Stability thresholds
+  stability_threshold_low: 0.7
+  stability_threshold_high: 0.9
+
+# === FEATURES ===
+features:
+  expected_dimension: 35  # Số chiều vector mong đợi
+  normalization: 'standard'  # standard, minmax, hoặc none
+
+# === CLASSIFIER ===
+classifier:
+  model_type: 'lightgbm'  # lightgbm hoặc svm
+  
+  # LightGBM params
+  lgbm_num_leaves: 31
+  lgbm_max_depth: 6
+  lgbm_learning_rate: 0.05
+  lgbm_n_estimators: 100
+  lgbm_min_child_samples: 20
+  
+  # SVM params
+  svm_kernel: 'rbf'
+  svm_C: 1.0
+  svm_gamma: 'scale'
+  
+  # Calibration
+  calibration_method: 'isotonic'  # isotonic hoặc platt
+  calibration_cv: 5
+
+# === FUSION ===
+fusion:
+  # Trọng số cho các component scores
+  artifact_weight: 0.4
+  reality_weight: 0.35
+  stress_weight: 0.25
+  
+  # Thresholds
+  threshold_fake: 0.5
+  confidence_threshold_high: 0.7
+  confidence_threshold_low: 0.3
+
+# === EVALUATION ===
+evaluation:
+  cv_folds: 5
+  test_size: 0.2
+  random_seed: 42
+  metrics:
+    - 'auc'
+    - 'precision'
+    - 'recall'
+    - 'f1'
+  target_tpr: 0.9  # For FPR calculation
+
+# === REPORT ===
+report:
+  pdf_page_size: 'A4'
+  plot_dpi: 100
+  include_plots: true
+  plot_style: 'seaborn-v0_8-darkgrid'
+
+# === LOGGING ===
+logging:
+  level: 'INFO'  # DEBUG, INFO, WARNING, ERROR
+  log_dir: 'logs'
+  log_file: 'detector.log'
+  console_output: true
+
+# === PATHS ===
+paths:
+  models_dir: 'models'
+  output_dir: 'output'
+  data_dir: 'data'
+  cache_dir: '.cache'
+
+# === VERSION ===
+version: '1.0.0'
