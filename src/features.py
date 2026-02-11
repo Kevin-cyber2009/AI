@@ -4,7 +4,7 @@ Module features: Aggregator tổng hợp forensic + reality features thành vect
 """
 
 import numpy as np
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Tuple
 import logging
 
 from .preprocessing import VideoPreprocessor
