@@ -54,12 +54,47 @@ models/*.h5
 models/*.pth
 !models/.gitkeep
 
-# Data
-data/synthetic/videos/*.mp4
-data/synthetic/videos/*.avi
+# ========================================
+# DATA FILES - KHÔNG COMMIT LÊN GIT
+# ========================================
+# Training/Test data (dung lượng lớn)
+data/train/real/*.mp4
+data/train/real/*.avi
+data/train/real/*.mov
+data/train/real/*.mkv
+data/train/fake/*.mp4
+data/train/fake/*.avi
+data/train/fake/*.mov
+data/train/fake/*.mkv
+
+data/test/real/*.mp4
+data/test/real/*.avi
+data/test/real/*.mov
+data/test/real/*.mkv
+data/test/fake/*.mp4
+data/test/fake/*.avi
+data/test/fake/*.mov
+data/test/fake/*.mkv
+
+# Synthetic data (nếu giữ lại)
+data/synthetic/videos/
+
+# Any video files in data/
+data/**/*.mp4
+data/**/*.avi
+data/**/*.mov
+data/**/*.mkv
+
+# Large archives
 data/*.zip
 data/*.tar.gz
-!data/synthetic/.gitkeep
+data/*.rar
+
+# Keep folder structure
+!data/train/real/.gitkeep
+!data/train/fake/.gitkeep
+!data/test/real/.gitkeep
+!data/test/fake/.gitkeep
 
 # Output
 output/*.json
