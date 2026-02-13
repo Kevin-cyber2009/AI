@@ -48,11 +48,9 @@
     "cv_scores": [
       0.5,
       0.5,
-      0.5,
-      0.5,
-      NaN
+      0.5
     ],
-    "mean_auc": NaN,
-    "std_auc": NaN
+    "mean_auc": 0.5,
+    "std_auc": 0.0
   }
 }
